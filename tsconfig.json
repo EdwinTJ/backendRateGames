@@ -7,6 +7,8 @@
     "moduleResolution": "bundler",
     "outDir": "dist",
     "paths": { "~/*": ["./src/*"] },
-    "target": "ESNext"
+    "target": "ESNext",
+    "strict": true /* Enable all strict type-checking options. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   }
 }
