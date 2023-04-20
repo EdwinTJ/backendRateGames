@@ -6,13 +6,16 @@ dependencies:
     version: 4.8.6
   '@prisma/client':
     specifier: ^4.13.0
-    version: 4.13.0
+    version: 4.13.0(prisma@4.13.0)
   cloudinary:
     specifier: ^1.36.1
     version: 1.36.1
   cors:
     specifier: ^2.8.5
     version: 2.8.5
+  dotenv:
+    specifier: ^16.0.3
+    version: 16.0.3
   esbuild:
     specifier: ^0.17.17
     version: 0.17.17
@@ -33,6 +36,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.15.11
     version: 18.15.11
+  prisma:
+    specifier: ^4.13.0
+    version: 4.13.0
 
 packages:
 
@@ -295,7 +301,7 @@ packages:
       webcrypto-core: 1.7.7
     dev: false
 
-  /@prisma/client@4.13.0:
+  /@prisma/client@4.13.0(prisma@4.13.0):
     resolution: {integrity: sha512-YaiiICcRB2hatxsbnfB66uWXjcRw3jsZdlAVxmx0cFcTc/Ad/sKdHCcWSnqyDX47vAewkjRFwiLwrOUjswVvmA==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -306,11 +312,16 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a
+      prisma: 4.13.0
     dev: false
 
   /@prisma/engines-version@4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a:
     resolution: {integrity: sha512-fsQlbkhPJf08JOzKoyoD9atdUijuGBekwoOPZC3YOygXEml1MTtgXVpnUNchQlRSY82OQ6pSGQ9PxUe4arcSLQ==}
     dev: false
+
+  /@prisma/engines@4.13.0:
+    resolution: {integrity: sha512-HrniowHRZXHuGT9XRgoXEaP2gJLXM5RMoItaY2PkjvuZ+iHc0Zjbm/302MB8YsPdWozAPHHn+jpFEcEn71OgPw==}
+    requiresBuild: true
 
   /@tootallnate/once@1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -646,6 +657,11 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.4.1
+    dev: false
+
+  /dotenv@16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /ee-first@1.1.1:
@@ -1117,6 +1133,14 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: false
     optional: true
+
+  /prisma@4.13.0:
+    resolution: {integrity: sha512-L9mqjnSmvWIRCYJ9mQkwCtj4+JDYYTdhoyo8hlsHNDXaZLh/b4hR0IoKIBbTKxZuyHQzLopb/+0Rvb69uGV7uA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.13.0
 
   /proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
