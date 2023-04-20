@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import HttpError from "../middleware/http-error";
+import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
+import { Redis } from "@upstash/redis";
 //Types
 import type { Request, Response, NextFunction } from "express";
+import { error } from "console";
 const prisma = new PrismaClient();
 
 // Get Comments for a post
@@ -35,6 +38,13 @@ export const getAllComments = async (
   }
 };
 
+//Create a new rate limit for a user, that allows 3 requests per minute
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(3, "1 m"),
+  analytics: true,
+});
+
 // Create a new comment for a post
 export const newComment = async (
   req: Request,
@@ -43,7 +53,20 @@ export const newComment = async (
 ) => {
   const { id } = req.params;
   const { text, authorId } = req.body;
-  console.log("text", typeof text);
+  const { success } = await ratelimit.limit(authorId);
+  if (!success) {
+    const error = new HttpError(
+      "You have exceeded the limit of 3 requests",
+      429
+    );
+    return (
+      next(error),
+      res.json({
+        success: false,
+        message: "You have exceeded the limit of 3 requests per minute",
+      })
+    );
+  }
   if (text === null || text === undefined) {
     return res.json({
       success: false,
