@@ -1,8 +1,8 @@
 {
-  "name": "node-ts",
-  "version": "0.0.0",
-  "author": "dayblox",
-  "description": "Node.js & TypeScript starter",
+  "name": "gameReview_API",
+  "version": "0.0.1",
+  "author": "Edwin Silvestre",
+  "description": "This is the API for the Game Review App",
   "engines": {
     "node": ">=18.11",
     "pnpm": ">=7.27"

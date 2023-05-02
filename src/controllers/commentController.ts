@@ -4,7 +4,6 @@ import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
 //Types
 import type { Request, Response, NextFunction } from "express";
-import { error } from "console";
 const prisma = new PrismaClient();
 
 // Get Comments for a post
