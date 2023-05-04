@@ -5,6 +5,7 @@ import {
   updatePost,
   deletePost,
   getSinglePost,
+  searchPost,
 } from "../controllers/postController";
 import { validate } from "../middleware/zodMiddleware";
 import { newPostSchema, updatePostSchema } from "../schemas/postSchema";
@@ -13,6 +14,7 @@ import { newPostSchema, updatePostSchema } from "../schemas/postSchema";
 const router = Router();
 
 router.get("/", getAllPosts);
+router.get("/search", searchPost);
 router.get("/single/:id", getSinglePost);
 router.post("/create", validate(newPostSchema), newPost);
 router.put("/:id", validate(updatePostSchema), updatePost);

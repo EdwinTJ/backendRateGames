@@ -5,6 +5,31 @@ import HttpError from "../middleware/http-error";
 import type { Request, Response, NextFunction } from "express";
 const prisma = new PrismaClient();
 
+export const searchPost = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const query = String(req.query.searchQuery);
+
+  try {
+    const post = await prisma.post.findMany({
+      where: {
+        title: {
+          contains: query,
+        },
+      },
+    });
+    res.json({
+      success: true,
+      post,
+    });
+  } catch (err) {
+    const error = new HttpError("Something went wrong", 500);
+    return next(error);
+  }
+};
+
 export const getAllPosts = async (
   req: Request,
   res: Response,
